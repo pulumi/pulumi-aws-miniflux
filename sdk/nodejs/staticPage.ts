@@ -6,19 +6,19 @@ import * as utilities from "./utilities";
 
 import * as aws from "@pulumi/aws";
 
-export class StaticPage extends pulumi.ComponentResource {
+export class Service extends pulumi.ComponentResource {
     /** @internal */
-    public static readonly __pulumiType = 'xyz:index:StaticPage';
+    public static readonly __pulumiType = 'miniflux:index:Service';
 
     /**
-     * Returns true if the given object is an instance of StaticPage.  This is designed to work even
+     * Returns true if the given object is an instance of Service.  This is designed to work even
      * when multiple copies of the Pulumi SDK have been loaded into the same process.
      */
-    public static isInstance(obj: any): obj is StaticPage {
+    public static isInstance(obj: any): obj is Service {
         if (obj === undefined || obj === null) {
             return false;
         }
-        return obj['__pulumiType'] === StaticPage.__pulumiType;
+        return obj['__pulumiType'] === Service.__pulumiType;
     }
 
     /**
@@ -31,7 +31,7 @@ export class StaticPage extends pulumi.ComponentResource {
     public /*out*/ readonly websiteUrl!: pulumi.Output<string>;
 
     /**
-     * Create a StaticPage resource with the given unique name, arguments, and options.
+     * Create a Service resource with the given unique name, arguments, and options.
      *
      * @param name The _unique_ name of the resource.
      * @param args The arguments to use to populate this resource's properties.
@@ -54,12 +54,12 @@ export class StaticPage extends pulumi.ComponentResource {
         if (!opts.version) {
             opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
         }
-        super(StaticPage.__pulumiType, name, inputs, opts, true /*remote*/);
+        super(Service.__pulumiType, name, inputs, opts, true /*remote*/);
     }
 }
 
 /**
- * The set of arguments for constructing a StaticPage resource.
+ * The set of arguments for constructing a Service resource.
  */
 export interface StaticPageArgs {
     /**

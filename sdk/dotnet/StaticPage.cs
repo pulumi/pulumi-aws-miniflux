@@ -9,8 +9,8 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Xyz
 {
-    [XyzResourceType("xyz:index:StaticPage")]
-    public partial class StaticPage : Pulumi.ComponentResource
+    [XyzResourceType("miniflux:index:Service")]
+    public partial class Service : Pulumi.ComponentResource
     {
         /// <summary>
         /// The bucket resource.
@@ -26,14 +26,14 @@ namespace Pulumi.Xyz
 
 
         /// <summary>
-        /// Create a StaticPage resource with the given unique name, arguments, and options.
+        /// Create a Service resource with the given unique name, arguments, and options.
         /// </summary>
         ///
         /// <param name="name">The unique name of the resource</param>
         /// <param name="args">The arguments used to populate this resource's properties</param>
         /// <param name="options">A bag of options that control this resource's behavior</param>
-        public StaticPage(string name, StaticPageArgs args, ComponentResourceOptions? options = null)
-            : base("xyz:index:StaticPage", name, args ?? new StaticPageArgs(), MakeResourceOptions(options, ""), remote: true)
+        public Service(string name, StaticPageArgs args, ComponentResourceOptions? options = null)
+            : base("miniflux:index:Service", name, args ?? new StaticPageArgs(), MakeResourceOptions(options, ""), remote: true)
         {
         }
 

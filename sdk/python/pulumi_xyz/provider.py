@@ -66,8 +66,7 @@ class Provider(pulumi.ProviderResource):
             __props__ = ProviderArgs.__new__(ProviderArgs)
 
         super(Provider, __self__).__init__(
-            'xyz',
+            'miniflux',
             resource_name,
             __props__,
             opts)
-

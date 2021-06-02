@@ -9,14 +9,14 @@ from typing import Any, Mapping, Optional, Sequence, Union, overload
 from . import _utilities
 import pulumi_aws
 
-__all__ = ['StaticPageArgs', 'StaticPage']
+__all__ = ['StaticPageArgs', 'Service']
 
 @pulumi.input_type
 class StaticPageArgs:
     def __init__(__self__, *,
                  index_content: pulumi.Input[str]):
         """
-        The set of arguments for constructing a StaticPage resource.
+        The set of arguments for constructing a Service resource.
         :param pulumi.Input[str] index_content: The HTML content for index.html.
         """
         pulumi.set(__self__, "index_content", index_content)
@@ -34,7 +34,7 @@ class StaticPageArgs:
         pulumi.set(self, "index_content", value)
 
 
-class StaticPage(pulumi.ComponentResource):
+class Service(pulumi.ComponentResource):
     @overload
     def __init__(__self__,
                  resource_name: str,
@@ -42,7 +42,7 @@ class StaticPage(pulumi.ComponentResource):
                  index_content: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
-        Create a StaticPage resource with the given unique name, props, and options.
+        Create a Service resource with the given unique name, props, and options.
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] index_content: The HTML content for index.html.
@@ -54,7 +54,7 @@ class StaticPage(pulumi.ComponentResource):
                  args: StaticPageArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Create a StaticPage resource with the given unique name, props, and options.
+        Create a Service resource with the given unique name, props, and options.
         :param str resource_name: The name of the resource.
         :param StaticPageArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -90,8 +90,8 @@ class StaticPage(pulumi.ComponentResource):
             __props__.__dict__["index_content"] = index_content
             __props__.__dict__["bucket"] = None
             __props__.__dict__["website_url"] = None
-        super(StaticPage, __self__).__init__(
-            'xyz:index:StaticPage',
+        super(Service, __self__).__init__(
+            'miniflux:index:Service',
             resource_name,
             __props__,
             opts,
@@ -112,4 +112,3 @@ class StaticPage(pulumi.ComponentResource):
         The website URL.
         """
         return pulumi.get(self, "website_url")
-

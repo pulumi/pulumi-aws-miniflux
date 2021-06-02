@@ -1,3 +1,3 @@
-// Package xyz exports types, functions, subpackages for provisioning xyz resources.
+// Package miniflux exports types, functions, subpackages for provisioning miniflux resources.
 //
-package xyz
+package miniflux
