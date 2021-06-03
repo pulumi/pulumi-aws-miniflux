@@ -18,7 +18,7 @@ build:: build_provider build_dotnet_sdk build_nodejs_sdk build_python_sdk
 
 install:: install_provider install_dotnet_sdk install_nodejs_sdk
 
-publish:: publish_provider publish_nodejs_sdk
+publish:: publish_provider publish_nodejs_sdk publish_dotnet_sdk
 
 # Provider
 
@@ -82,6 +82,9 @@ install_nodejs_sdk:: build_nodejs_sdk
 
 publish_nodejs_sdk::
 	cd sdk/nodejs/bin && npm publish
+
+publish_dotnet_sdk::
+	cd nuget && dotnet nuget push Pulumi.Miniflux.${VERSION}.nupkg --api-key ${NUGET_API_KEY} --source https://api.nuget.org/v3/index.json
 
 # Python SDK
 
