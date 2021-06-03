@@ -25,7 +25,7 @@ func construct(ctx *pulumi.Context, typ, name string, inputs provider.ConstructI
 	options pulumi.ResourceOption) (*provider.ConstructResult, error) {
 	// TODO: Add support for additional component resources here.
 	switch typ {
-	case "miniflux:service:MinifluxService":
+	case "miniflux:index:MinifluxService":
 		return constructService(ctx, name, inputs, options)
 	default:
 		return nil, errors.Errorf("unknown resource type %s", typ)

@@ -5,23 +5,17 @@
 from . import _utilities
 import typing
 # Export this package's modules as members:
+from .miniflux_service import *
 from .provider import *
-
-# Make subpackages available:
-if typing.TYPE_CHECKING:
-    import pulumi_miniflux.service as service
-else:
-    service = _utilities.lazy_import('pulumi_miniflux.service')
-
 _utilities.register(
     resource_modules="""
 [
  {
   "pkg": "miniflux",
-  "mod": "service",
-  "fqn": "pulumi_miniflux.service",
+  "mod": "index",
+  "fqn": "pulumi_miniflux",
   "classes": {
-   "miniflux:service:MinifluxService": "MinifluxService"
+   "miniflux:index:MinifluxService": "MinifluxService"
   }
  }
 ]

@@ -14,9 +14,8 @@
     },
     "files": [
         "index.ts",
+        "minifluxService.ts",
         "provider.ts",
-        "service/index.ts",
-        "service/minifluxService.ts",
         "utilities.ts"
     ]
 }

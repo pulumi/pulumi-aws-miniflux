@@ -24,6 +24,7 @@ publish:: publish_provider publish_nodejs_sdk
 
 build_provider::
 	rm -rf ${WORKING_DIR}/bin/${PROVIDER}
+	VERSION=${VERSION} && sed -i.bak -e "s/[0-9]*\.[0-9]*\.[0-9]*/${VERSION}/" provider/pkg/version/version.go
 	cd provider/cmd/${PROVIDER} && VERSION=${VERSION} SCHEMA=${SCHEMA_PATH} go generate main.go
 	cd provider/cmd/${PROVIDER} && go build -a -o ${WORKING_DIR}/bin/${PROVIDER} -ldflags "-X ${PROJECT}/${VERSION_PATH}=${VERSION}" .
 
@@ -73,6 +74,7 @@ build_nodejs_sdk:: gen_nodejs_sdk
 		yarn run tsc && \
 		cp ../../doc/nodejs/README.md ../../LICENSE package.json yarn.lock ./bin/ && \
 		sed -i.bak -e "s/\$${VERSION}/$(VERSION)/g" ./bin/package.json && \
+		sed -i.bak -e "s/\$${VERSION}/$(VERSION)/g" ./bin/README.md && \
 		rm ./bin/package.json.bak
 
 install_nodejs_sdk:: build_nodejs_sdk

@@ -38,7 +38,7 @@ func NewMinifluxService(ctx *pulumi.Context,
 
 	serviceName := "miniflux-service"
 
-	err := ctx.RegisterComponentResource("miniflux:service:MinifluxService", name, component, opts...)
+	err := ctx.RegisterComponentResource("miniflux:index:MinifluxService", name, component, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -197,7 +197,7 @@ func NewMinifluxService(ctx *pulumi.Context,
 		return nil, err
 	}
 
-	db, err := rds.NewInstance(ctx, "db", &rds.InstanceArgs{
+	database, err := rds.NewInstance(ctx, "database", &rds.InstanceArgs{
 		InstanceClass:       pulumi.String("db.t3.micro"),
 		Engine:              pulumi.String("postgres"),
 		AllocatedStorage:    pulumi.Int(10),
@@ -254,7 +254,7 @@ func NewMinifluxService(ctx *pulumi.Context,
                 }
             }
 		}
-	]`, serviceName, args.DbUsername, args.DbPassword, db.Endpoint, args.AdminUsername, args.AdminPassword, logGroup.Name, region.Name, serviceName)
+	]`, serviceName, args.DbUsername, args.DbPassword, database.Endpoint, args.AdminUsername, args.AdminPassword, logGroup.Name, region.Name, serviceName)
 
 	taskDefinition, err := ecs.NewTaskDefinition(ctx, "taskDefinition", &ecs.TaskDefinitionArgs{
 		Family:                  pulumi.String("fargate-task-definition"),
