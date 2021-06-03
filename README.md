@@ -1,8 +1,8 @@
-# miniflux
+# pulumi-miniflux
 
 A multi-language [Pulumi](https://pulumi.com) component builder for [Miniflux](https://miniflux.app/), the excellent open-source RSS server. The resulting component deploys a containerized Miniflux service to the AWS cloud using [AWS Fargate](https://aws.amazon.com/fargate) and a managed PostgreSQL database with [Amazon RDS](https://aws.amazon.com/rds/).
 
-This repository is used for building and publishing the binaries and language-specific SDKs that let work with `MinifluxService` instances in any Pulumi-supported language. The base component, written in Go, produces installable packages for Node.js, Python, Go, and .NET.
+This repository is used for building and publishing the binaries and language-specific SDKs that let you create and deploy Miniflux services using any Pulumi-supported language. The base component, written in Go, produces installable packages for Node.js, Python, Go, and .NET.
 
 ## Using the components
 
@@ -12,6 +12,8 @@ All components require Pulumi, of course, along with the `pulumi-resource-minifl
 pulumi plugin install resource miniflux 0.0.16 \
     --server http://cnunciato-pulumi-components.s3-website-us-west-2.amazonaws.com
 ```
+
+Then, assuming you've configured Pulumi and your AWS credentials,
 
 ### Node.js
 
@@ -129,6 +131,10 @@ class MyStack : Stack
     public Output<string> Endpoint { get; set; }
 }
 ```
+
+### Python
+
+🚧 👷 ⌛
 
 ## Generating and publishing component packages
 
