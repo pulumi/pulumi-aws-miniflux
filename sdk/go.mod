@@ -1,6 +1,6 @@
-module github.com/pulumi/pulumi-miniflux/sdk
+module github.com/cnunciato/pulumi-miniflux/sdk
 
-go 1.15
+go 1.16
 
 require (
 	github.com/blang/semver v3.5.1+incompatible
