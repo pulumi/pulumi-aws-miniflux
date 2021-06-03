@@ -1,6 +1,6 @@
 # miniflux
 
-A multi-language [Pulumi](https://pulumi.com) component builder for [Miniflux](https://miniflux.app/), the excellent open-source RSS server. This resulting component deploys a containerized Miniflux service to the AWS cloud using [AWS Fargate](https://aws.amazon.com/fargate) and [Amazon RDS](https://aws.amazon.com/rds/).
+A multi-language [Pulumi](https://pulumi.com) component builder for [Miniflux](https://miniflux.app/), the excellent open-source RSS server. The resulting component deploys a containerized Miniflux service to the AWS cloud using [AWS Fargate](https://aws.amazon.com/fargate) and [Amazon RDS](https://aws.amazon.com/rds/).
 
 ## Generate and publish!
 
