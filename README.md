@@ -114,8 +114,8 @@ class MyStack : Stack
     public MyStack()
     {
         var config = new Pulumi.Config();
-        var adminPassword = config.Require("adminPassword");
-        var dbPassword = config.Require("dbPassword");
+        var adminPassword = config.RequireSecret("adminPassword");
+        var dbPassword = config.RequireSecret("dbPassword");
 
         // Create a new Miniflux service.
         var service = new Pulumi.Miniflux.MinifluxService("service", new Pulumi.Miniflux.MinifluxServiceArgs{
