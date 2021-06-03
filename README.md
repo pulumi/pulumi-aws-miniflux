@@ -7,6 +7,7 @@ A multi-language [Pulumi](https://pulumi.com) component builder for [Miniflux](h
 Publish currently works for:
 
 * npm (https://www.npmjs.com/package/@cnunciato/miniflux)
+* nuget (https://www.nuget.org/packages/Pulumi.Miniflux/)
 
 ```
 VERSION=0.0.11 make install generate publish
