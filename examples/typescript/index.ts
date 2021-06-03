@@ -5,7 +5,7 @@ const config = new pulumi.Config();
 const adminPassword = config.requireSecret("adminPassword");
 const dbPassword = config.requireSecret("adminPassword");
 
-const service = new miniflux.service.MinifluxService("service", {
+const service = new miniflux.MinifluxService("service", {
     adminPassword,
     dbPassword,
 });
