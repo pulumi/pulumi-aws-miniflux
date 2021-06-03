@@ -1,6 +1,6 @@
-module github.com/pulumi/pulumi-miniflux
+module github.com/cnunciato/pulumi-miniflux
 
-go 1.15
+go 1.16
 
 require (
 	github.com/pkg/errors v0.9.1

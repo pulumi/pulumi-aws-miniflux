@@ -27,11 +27,14 @@ class InstallPluginCommand(install):
 
 
 def readme():
-    with open('README.md', encoding='utf-8') as f:
-        return f.read()
+    try:
+        with open('README.md', encoding='utf-8') as f:
+            return f.read()
+    except FileNotFoundError:
+            return "miniflux Pulumi Package - Development Version"
 
 
-setup(name='pulumi_xyz',
+setup(name='pulumi_miniflux',
       version='${VERSION}',
       long_description=readme(),
       long_description_content_type='text/markdown',
@@ -40,7 +43,7 @@ setup(name='pulumi_xyz',
       },
       packages=find_packages(),
       package_data={
-          'pulumi_xyz': [
+          'pulumi_miniflux': [
               'py.typed',
           ]
       },

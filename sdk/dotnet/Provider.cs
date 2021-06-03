@@ -7,9 +7,9 @@ using System.Collections.Immutable;
 using System.Threading.Tasks;
 using Pulumi.Serialization;
 
-namespace Pulumi.Xyz
+namespace Pulumi.Miniflux
 {
-    [XyzResourceType("pulumi:providers:miniflux")]
+    [MinifluxResourceType("pulumi:providers:miniflux")]
     public partial class Provider : Pulumi.ProviderResource
     {
         /// <summary>

@@ -1,4 +1,4 @@
-VERSION         := 0.0.1
+VERSION         ?= 0.0.1
 
 PACK            := miniflux
 PROJECT         := github.com/cnunciato/pulumi-${PACK}
@@ -10,12 +10,15 @@ VERSION_PATH    := provider/pkg/version.Version
 WORKING_DIR     := $(shell pwd)
 SCHEMA_PATH     := ${WORKING_DIR}/schema.json
 
+PROVIDER_BINARY	:= ${PROVIDER}-v${VERSION}-darwin-amd64.tar.gz
+
 generate:: gen_go_sdk gen_dotnet_sdk gen_nodejs_sdk gen_python_sdk
 
 build:: build_provider build_dotnet_sdk build_nodejs_sdk build_python_sdk
 
 install:: install_provider install_dotnet_sdk install_nodejs_sdk
 
+publish:: publish_provider publish_nodejs_sdk
 
 # Provider
 
@@ -26,6 +29,10 @@ build_provider::
 
 install_provider:: build_provider
 	cp ${WORKING_DIR}/bin/${PROVIDER} ${GOPATH}/bin
+
+publish_provider::
+	cd bin && tar -czvf ${PROVIDER_BINARY} ${PROVIDER} && cd ..
+	aws s3 cp ./bin/${PROVIDER_BINARY} s3://cnunciato-pulumi-components --acl public-read --region us-west-2
 
 
 # Go SDK
@@ -64,13 +71,15 @@ build_nodejs_sdk:: gen_nodejs_sdk
 		yarn install && \
 		yarn run tsc --version && \
 		yarn run tsc && \
-		cp ../../README.md ../../LICENSE package.json yarn.lock ./bin/ && \
+		cp ../../doc/nodejs/README.md ../../LICENSE package.json yarn.lock ./bin/ && \
 		sed -i.bak -e "s/\$${VERSION}/$(VERSION)/g" ./bin/package.json && \
 		rm ./bin/package.json.bak
 
 install_nodejs_sdk:: build_nodejs_sdk
 	yarn link --cwd ${WORKING_DIR}/sdk/nodejs/bin
 
+publish_nodejs_sdk::
+	cd sdk/nodejs/bin && npm publish
 
 # Python SDK
 

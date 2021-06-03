@@ -1,32 +1,36 @@
 {
     "name": "miniflux",
     "resources": {
-        "miniflux:index:Service": {
+        "miniflux:service:MinifluxService": {
             "isComponent": true,
             "inputProperties": {
-                "db_name": {
+                "dbName": {
                     "type": "string",
-                    "description": "The name of the PostgreSQL database to be used by Miniflux."
+                    "description": "The name of the PostgreSQL database to be used by Miniflux.",
+                    "default": "miniflux"
                 },
-                "admin_username": {
+                "dbUsername": {
                     "type": "string",
-                    "description": "The username to use for the Miniflux service administrator account."
+                    "description": "The username of the PostgreSQL account to be used by the Miniflux service.",
+                    "default": "miniflux"
                 },
-                "admin_password": {
-                    "type": "string",
-                    "description": "The Miniflux administrator's password."
-                },
-                "db_username": {
-                    "type": "string",
-                    "description": "The username of the PostgreSQL account to be used by the Miniflux service."
-                },
-                "db_password": {
+                "dbPassword": {
                     "type": "string",
                     "description": "The PostgreSQL user's password."
+                },
+                "adminUsername": {
+                    "type": "string",
+                    "description": "The username to use for the Miniflux service administrator account.",
+                    "default": "admin"
+                },
+                "adminPassword": {
+                    "type": "string",
+                    "description": "The Miniflux administrator's password."
                 }
             },
             "requiredInputs": [
-                "admin_password"
+                "adminPassword",
+                "dbPassword"
             ],
             "properties": {
                 "endpoint": {

@@ -25,7 +25,7 @@ func construct(ctx *pulumi.Context, typ, name string, inputs provider.ConstructI
 	options pulumi.ResourceOption) (*provider.ConstructResult, error) {
 	// TODO: Add support for additional component resources here.
 	switch typ {
-	case "miniflux:index:Service":
+	case "miniflux:service:MinifluxService":
 		return constructService(ctx, name, inputs, options)
 	default:
 		return nil, errors.Errorf("unknown resource type %s", typ)
@@ -40,13 +40,13 @@ func constructService(ctx *pulumi.Context, name string, inputs provider.Construc
 
 	// Copy the raw inputs to StaticPageArgs. `inputs.CopyTo` uses the types and `pulumi:` tags
 	// on the struct's fields to convert the raw values to the appropriate Input types.
-	args := &StaticPageArgs{}
+	args := &MinifluxServiceArgs{}
 	if err := inputs.CopyTo(args); err != nil {
 		return nil, errors.Wrap(err, "setting args")
 	}
 
 	// Create the component resource.
-	miniflux, err := NewService(ctx, name, args, options)
+	miniflux, err := NewMinifluxService(ctx, name, args, options)
 	if err != nil {
 		return nil, errors.Wrap(err, "creating component")
 	}

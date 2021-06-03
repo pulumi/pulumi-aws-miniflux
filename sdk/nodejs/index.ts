@@ -6,23 +6,13 @@ import * as utilities from "./utilities";
 
 // Export members:
 export * from "./provider";
-export * from "./miniflux";
 
-// Import resources to register:
-import { Service } from "./miniflux";
+// Export sub-modules:
+import * as service from "./service";
 
-const _module = {
-    version: utilities.getVersion(),
-    construct: (name: string, type: string, urn: string): pulumi.Resource => {
-        switch (type) {
-            case "miniflux:index:Service":
-                return new Service(name, <any>undefined, { urn })
-            default:
-                throw new Error(`unknown resource type ${type}`);
-        }
-    },
+export {
+    service,
 };
-pulumi.runtime.registerResourceModule("miniflux", "index", _module)
 
 import { Provider } from "./provider";
 
