@@ -13,7 +13,7 @@ pulumi plugin install resource miniflux 0.0.16 \
     --server http://cnunciato-pulumi-components.s3-website-us-west-2.amazonaws.com
 ```
 
-Then, assuming you've configured Pulumi and your AWS credentials,
+Then, assuming you've [configured Pulumi and AWS](https://www.pulumi.com/docs/intro/cloud-providers/aws/), you can follow the instructions below to use the component in your language of choice.
 
 ### Node.js
 
