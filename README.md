@@ -15,6 +15,8 @@ pulumi plugin install resource miniflux 0.0.16 \
 
 Then, assuming you've [configured Pulumi and AWS](https://www.pulumi.com/docs/intro/cloud-providers/aws/), you can follow the instructions below to use the component in your language of choice.
 
+Full examples in [`./examples`](./examples).
+
 ### Node.js
 
 On the command line:
@@ -142,8 +144,8 @@ Right now, these instructions are mainly for me, but you might find them useful 
 
 ```
 $ export VERSION=0.0.16   # Sets the target package version.
-$ make install generate   # To build the provider and generate all four language SDKs.
-$ make publish            # To publish to npm, nuget, and (soon) PyPi.
+$ make install generate   # Builds the provider and generates all four language SDKs.
+$ make publish            # Publishes to npm, nuget, and (soon) PyPi.
 ```
 
 ## See also
