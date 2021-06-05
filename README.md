@@ -2,9 +2,7 @@
 
 A multi-language [Pulumi](https://pulumi.com) component builder for , the excellent open-source RSS server.
 
-This repository is used for building and publishing the binaries and language-specific SDKs that let you deploy your own [Miniflux](https://miniflux.app/) service using Pulumi and [any language Pulumi supports](https://www.pulumi.com/docs/intro/languages/). The `MinifluxService` component itself deploys a containerized Miniflux service with [AWS Fargate](https://aws.amazon.com/fargate) and a managed PostgreSQL database with [Amazon RDS](https://aws.amazon.com/rds/), and is available from popular package managers like.
-
-## Available packages
+This repository is used for building and publishing the binaries and language-specific SDKs that let you deploy your own [Miniflux](https://miniflux.app/) service using Pulumi and [any language Pulumi supports](https://www.pulumi.com/docs/intro/languages/). The `MinifluxService` component itself deploys a containerized Miniflux service with [AWS Fargate](https://aws.amazon.com/fargate) and a managed PostgreSQL database with [Amazon RDS](https://aws.amazon.com/rds/), and is available via common package managers, including:
 
 * npm, for Node.js: https://www.npmjs.com/package/@cnunciato/miniflux
 * PyPi, for Python: https://pypi.org/project/pulumi-miniflux/
