@@ -4,6 +4,10 @@ A multi-language [Pulumi](https://pulumi.com) component builder for [Miniflux](h
 
 This repository is used for building and publishing the binaries and language-specific SDKs that let you create and deploy Miniflux services using any Pulumi-supported language. The base component, written in Go, produces installable packages for Node.js, Python, Go, and .NET.
 
+* Node.js package on npm: https://www.npmjs.com/package/@cnunciato/miniflux
+* Python package on PyPi: https://pypi.org/project/pulumi-miniflux/
+* C# .NET package on NuGet: https://www.nuget.org/packages/Pulumi.Miniflux/
+
 ## Using the components
 
 All components require Pulumi, of course, along with the `pulumi-resource-miniflux` provider, which today must be installed separately. To do that:
