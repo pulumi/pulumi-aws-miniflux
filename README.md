@@ -136,7 +136,33 @@ class MyStack : Stack
 
 ### Python
 
-🚧 👷 ⌛
+On the command line:
+
+```
+$ pulumi new python
+$ pip install pulumi_miniflux
+$ pulumi config set --secret adminPassword "some-secret-password"
+$ pulumi config set --secret dbPassword "some-other-secret-password"
+```
+
+In `__main.py__`:
+
+```python
+import pulumi
+from pulumi_aws import s3
+from pulumi_miniflux import miniflux_service
+
+config = pulumi.Config();
+admin_password = config.get_secret("adminPassword")
+db_password = config.get_secret("dbPassword")
+
+service = miniflux_service.MinifluxService("service",
+        admin_password = admin_password,
+        db_password = db_password
+    )
+
+pulumi.export("endpoint", service.endpoint)
+```
 
 ## Generating and publishing component packages
 

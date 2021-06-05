@@ -1,0 +1,6 @@
+name: pulumi-miniflux-examples-python
+runtime:
+  name: python
+  options:
+    virtualenv: venv
+description: An example of using the pulumi-miniflux component.

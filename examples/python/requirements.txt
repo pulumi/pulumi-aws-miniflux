@@ -1,0 +1,12 @@
+Arpeggio==1.10.2
+attrs==21.2.0
+dill==0.3.3
+grpcio==1.38.0
+parver==0.3.1
+protobuf==3.17.2
+pulumi==3.3.1
+pulumi-aws==4.6.0
+pulumi-miniflux==0.0.16
+PyYAML==5.4.1
+semver==2.13.0
+six==1.16.0
