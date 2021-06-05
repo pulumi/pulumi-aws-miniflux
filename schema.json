@@ -61,7 +61,7 @@
             "devDependencies": {
                 "typescript": "^3.7.0"
             },
-            "packageName": "@cnunciato/miniflux"
+            "packageName": "@cnunciato/pulumi-miniflux"
         },
         "python": {
             "requires": {

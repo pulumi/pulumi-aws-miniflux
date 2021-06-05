@@ -4,7 +4,7 @@ A multi-language [Pulumi](https://pulumi.com) component builder for [Miniflux](h
 
 This repository is used for building and publishing the binaries and language-specific SDKs that let you deploy your own Miniflux server using Pulumi and [any language Pulumi supports](https://www.pulumi.com/docs/intro/languages/). The `MinifluxService` component itself deploys a containerized Miniflux service with [AWS Fargate](https://aws.amazon.com/fargate) and a managed PostgreSQL database with [Amazon RDS](https://aws.amazon.com/rds/). You can install the component in the usual way using your language's standard package manager -- for example:
 
-* npm for JavaScript or TypeScript: https://www.npmjs.com/package/@cnunciato/miniflux
+* npm for JavaScript or TypeScript: https://www.npmjs.com/package/@cnunciato/pulumi-miniflux
 * PyPI for Python: https://pypi.org/project/pulumi-miniflux/
 * NuGet for any .NET language: https://www.nuget.org/packages/Pulumi.Miniflux/
 * This GitHub repo (i.e., [from here](./sdk/go)) for Go
