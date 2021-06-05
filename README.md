@@ -5,7 +5,7 @@ A multi-language [Pulumi](https://pulumi.com) component builder for , the excell
 This repository is used for building and publishing the binaries and language-specific SDKs that let you deploy your own [Miniflux](https://miniflux.app/) service using Pulumi and [any language Pulumi supports](https://www.pulumi.com/docs/intro/languages/). The `MinifluxService` component itself deploys a containerized Miniflux service with [AWS Fargate](https://aws.amazon.com/fargate) and a managed PostgreSQL database with [Amazon RDS](https://aws.amazon.com/rds/), and is available via common package managers, including:
 
 * npm, for Node.js: https://www.npmjs.com/package/@cnunciato/miniflux
-* PyPi, for Python: https://pypi.org/project/pulumi-miniflux/
+* PyPI, for Python: https://pypi.org/project/pulumi-miniflux/
 * NuGet, for C#: https://www.nuget.org/packages/Pulumi.Miniflux/
 * GitHub (in [this repo](./sdk/go)), for Go
 
@@ -176,7 +176,7 @@ Right now, these instructions are mainly for me, but you might find them useful 
 ```
 $ export VERSION=0.0.16   # Sets the target package version.
 $ make install generate   # Builds the provider and generates all four language SDKs.
-$ make publish            # Publishes to npm, nuget, and (soon) PyPi.
+$ make publish            # Publishes to npm, nuget, and PyPI.
 ```
 
 ## See also
