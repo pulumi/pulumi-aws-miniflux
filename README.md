@@ -6,6 +6,8 @@ A multi-language [Pulumi](https://pulumi.com) component builder for [Miniflux](h
 
 I use this repository to build and publish a [Pulumi package](https://www.pulumi.com/docs/guides/pulumi-packages/) that deploys a Miniflux server on AWS. The package wraps a component [`written in Go`](./provider/pkg/provider/miniflux.go) that handles declaring all of the AWS infrastructure, network rules, policies, etc., to deploy a container on [AWS Fargate](https://aws.amazon.com/fargate) and a managed PostgreSQL database on [Amazon RDS](https://aws.amazon.com/rds/) in an easy-to-use API that you can consume in [any language Pulumi supports](https://www.pulumi.com/docs/intro/languages/). Just configure the passwords (as encrypted [Pulumi secrets](https://www.pulumi.com/docs/intro/concepts/secrets/)) that you want to use Miniflux admin and PostgreSQL users, run `pulumi up`, and sit back while Pulumi takes care of the rest.
 
+![image](https://user-images.githubusercontent.com/274700/121072754-735dbc00-c786-11eb-9310-e29873dac554.png)
+
 Components are published to the usual package managers:
 
 * npm for JavaScript or TypeScript: https://www.npmjs.com/package/@cnunciato/pulumi-miniflux
