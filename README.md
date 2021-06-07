@@ -13,7 +13,7 @@ Components are published to the usual package managers:
 * NuGet for any .NET language: https://www.nuget.org/packages/Pulumi.Miniflux/
 * This GitHub repo (i.e., [from here](./sdk/go)) for Go
 
-### Examples by language:
+### Component API
 
 #### TypeScript/JavaScript
 
@@ -54,14 +54,13 @@ service, err := miniflux.NewMinifluxService(ctx, "service", &miniflux.MinifluxSe
 })
 ```
 
-#### #C
+#### C#
 
 ```csharp
 var config = new Pulumi.Config();
 var adminPassword = config.RequireSecret("adminPassword");
 var dbPassword = config.RequireSecret("dbPassword");
 
-// Create a new Miniflux service.
 var service = new Pulumi.Miniflux.MinifluxService("service", new Pulumi.Miniflux.MinifluxServiceArgs{
     AdminPassword = adminPassword,
     DbPassword = dbPassword,
