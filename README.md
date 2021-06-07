@@ -13,7 +13,9 @@ Components are published to the usual package managers:
 * NuGet for any .NET language: https://www.nuget.org/packages/Pulumi.Miniflux/
 * This GitHub repo (i.e., [from here](./sdk/go)) for Go
 
-Examples:
+### Examples by language:
+
+#### TypeScript/JavaScript
 
 ```typescript
 const config = new pulumi.Config();
@@ -26,6 +28,8 @@ const service = new miniflux.MinifluxService("service", {
 });
 ```
 
+#### Python
+
 ```python
 config = pulumi.Config();
 admin_password = config.get_secret("adminPassword")
@@ -37,6 +41,8 @@ service = miniflux_service.MinifluxService("service",
     )
 ```
 
+#### Go
+
 ```go
 conf := config.New(ctx, "")
 adminPassword := conf.RequireSecret("adminPassword")
@@ -47,6 +53,8 @@ service, err := miniflux.NewMinifluxService(ctx, "service", &miniflux.MinifluxSe
     DbPassword:    dbPassword,
 })
 ```
+
+#### #C
 
 ```csharp
 var config = new Pulumi.Config();
@@ -60,7 +68,7 @@ var service = new Pulumi.Miniflux.MinifluxService("service", new Pulumi.Miniflux
 });
 ```
 
-See below for more detailed instructions. Full examples are available at [`./examples`](./examples).
+See below for more detailed instructions. Complete programs are available at [`./examples`](./examples).
 
 ## Using published components
 
@@ -73,7 +81,7 @@ pulumi plugin install resource miniflux 0.0.16 \
 
 Then, assuming you've [configured Pulumi and AWS](https://www.pulumi.com/docs/intro/cloud-providers/aws/), you can follow the instructions below to use the component in your language of choice.
 
-### Node.js
+### TypeScript/JavaScript
 
 On the command line:
 
@@ -102,6 +110,38 @@ const service = new miniflux.MinifluxService("service", {
 
 // Export the URL of the service.
 export const endpoint = pulumi.interpolate`http://${service.endpoint}`;
+```
+
+### Python
+
+On the command line:
+
+```
+$ pulumi new python
+$ pip install pulumi_miniflux
+$ pulumi config set --secret adminPassword "some-secret-password"
+$ pulumi config set --secret dbPassword "some-other-secret-password"
+```
+
+In `__main.py__`:
+
+```python
+import pulumi
+from pulumi_aws import s3
+from pulumi_miniflux import miniflux_service
+
+config = pulumi.Config();
+admin_password = config.get_secret("adminPassword")
+db_password = config.get_secret("dbPassword")
+
+# Create a new Miniflux service.
+service = miniflux_service.MinifluxService("service",
+        admin_password = admin_password,
+        db_password = db_password
+    )
+
+# Export the URL of the service.
+pulumi.export("endpoint", service.endpoint)
 ```
 
 ### Go
@@ -188,38 +228,6 @@ class MyStack : Stack
     [Output]
     public Output<string> Endpoint { get; set; }
 }
-```
-
-### Python
-
-On the command line:
-
-```
-$ pulumi new python
-$ pip install pulumi_miniflux
-$ pulumi config set --secret adminPassword "some-secret-password"
-$ pulumi config set --secret dbPassword "some-other-secret-password"
-```
-
-In `__main.py__`:
-
-```python
-import pulumi
-from pulumi_aws import s3
-from pulumi_miniflux import miniflux_service
-
-config = pulumi.Config();
-admin_password = config.get_secret("adminPassword")
-db_password = config.get_secret("dbPassword")
-
-# Create a new Miniflux service.
-service = miniflux_service.MinifluxService("service",
-        admin_password = admin_password,
-        db_password = db_password
-    )
-
-# Export the URL of the service.
-pulumi.export("endpoint", service.endpoint)
 ```
 
 ## Generating and publishing component packages
