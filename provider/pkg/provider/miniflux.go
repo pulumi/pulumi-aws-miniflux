@@ -38,11 +38,13 @@ func NewMinifluxService(ctx *pulumi.Context,
 
 	serviceName := "miniflux-service"
 
+	// Register the component resource.
 	err := ctx.RegisterComponentResource("miniflux:index:MinifluxService", name, component, opts...)
 	if err != nil {
 		return nil, err
 	}
 
+	// Get the current AWS region.
 	region, err := aws.GetRegion(ctx, nil, nil)
 	if err != nil {
 		return nil, err
@@ -59,12 +61,13 @@ func NewMinifluxService(ctx *pulumi.Context,
 		return nil, err
 	}
 
+	// Create a new log group to capture service logs.
 	logGroup, err := cloudwatch.NewLogGroup(ctx, "logGroup", &cloudwatch.LogGroupArgs{}, pulumi.Parent(component))
 	if err != nil {
 		return nil, err
 	}
 
-	// Create a SecurityGroup that permits HTTP ingress and unrestricted egress.
+	// Create a SecurityGroup that allows HTTP ingress and unrestricted egress.
 	webSecurityGroup, err := ec2.NewSecurityGroup(ctx, "webSecurityGroup", &ec2.SecurityGroupArgs{
 		VpcId: pulumi.String(vpc.Id),
 		Ingress: ec2.SecurityGroupIngressArray{
@@ -94,6 +97,7 @@ func NewMinifluxService(ctx *pulumi.Context,
 		return nil, err
 	}
 
+	// Create a SecurityGroup that allows ingress on 5432 and unrestricted egress.
 	dbSecurityGroup, err := ec2.NewSecurityGroup(ctx, "dbSecurityGroup", &ec2.SecurityGroupArgs{
 		VpcId: pulumi.String(vpc.Id),
 		Ingress: ec2.SecurityGroupIngressArray{
@@ -143,6 +147,7 @@ func NewMinifluxService(ctx *pulumi.Context,
 		return nil, err
 	}
 
+	// Associate the role to a task-execution policy.
 	if _, err := iam.NewRolePolicyAttachment(ctx, "taskRolePolicy", &iam.RolePolicyAttachmentArgs{
 		Role:      taskRole.Name,
 		PolicyArn: pulumi.String("arn:aws:iam::aws:policy/service-role/AmazonECSTaskExecutionRolePolicy"),
@@ -159,6 +164,7 @@ func NewMinifluxService(ctx *pulumi.Context,
 		return nil, err
 	}
 
+	// Create a target group with a health-check.
 	targetGroup, err := elb.NewTargetGroup(ctx, "targetGroup", &elb.TargetGroupArgs{
 		Port:       pulumi.Int(8080),
 		Protocol:   pulumi.String("HTTP"),
@@ -176,6 +182,7 @@ func NewMinifluxService(ctx *pulumi.Context,
 		return nil, err
 	}
 
+	// Create a listener to route traffic to the target group.
 	webListener, err := elb.NewListener(ctx, "webListener", &elb.ListenerArgs{
 		LoadBalancerArn: loadBalancer.Arn,
 		Port:            pulumi.Int(80),
@@ -190,6 +197,7 @@ func NewMinifluxService(ctx *pulumi.Context,
 		return nil, err
 	}
 
+	// Create a new subnet group for the database.
 	dbSubnets, err := rds.NewSubnetGroup(ctx, "dbsubnets", &rds.SubnetGroupArgs{
 		SubnetIds: pulumi.ToStringArray(subnets.Ids),
 	}, pulumi.Parent(component))
@@ -197,6 +205,7 @@ func NewMinifluxService(ctx *pulumi.Context,
 		return nil, err
 	}
 
+	// Create the database.
 	database, err := rds.NewInstance(ctx, "database", &rds.InstanceArgs{
 		InstanceClass:       pulumi.String("db.t3.micro"),
 		Engine:              pulumi.String("postgres"),
@@ -212,6 +221,7 @@ func NewMinifluxService(ctx *pulumi.Context,
 		return nil, err
 	}
 
+	// Define the container arguments.
 	containerDefinitions := pulumi.Sprintf(`[
 		{
 			"name": "%s",
@@ -256,6 +266,7 @@ func NewMinifluxService(ctx *pulumi.Context,
 		}
 	]`, serviceName, args.DbUsername, args.DbPassword, database.Endpoint, args.AdminUsername, args.AdminPassword, logGroup.Name, region.Name, serviceName)
 
+	// Create the container task definition.
 	taskDefinition, err := ecs.NewTaskDefinition(ctx, "taskDefinition", &ecs.TaskDefinitionArgs{
 		Family:                  pulumi.String("fargate-task-definition"),
 		Cpu:                     pulumi.String("256"),
@@ -269,6 +280,7 @@ func NewMinifluxService(ctx *pulumi.Context,
 		return nil, err
 	}
 
+	// And finally, create the service.
 	_, err = ecs.NewService(ctx, "fargateService", &ecs.ServiceArgs{
 		Cluster:        cluster.Arn,
 		DesiredCount:   pulumi.Int(1),
@@ -292,6 +304,7 @@ func NewMinifluxService(ctx *pulumi.Context,
 		return nil, err
 	}
 
+	// Capture the service endpoint.
 	component.Endpoint = loadBalancer.DnsName
 
 	if err := ctx.RegisterResourceOutputs(component, pulumi.Map{
