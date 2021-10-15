@@ -23,7 +23,7 @@ builds:
       - windows
       - linux
     ldflags:
-      - -X github.com/pulumi/pulumi-aws-s3-replicated-bucket/provider/pkg/version.Version={{.Tag }}
+      - -X github.com/pulumi/pulumi-aws-miniflux/provider/pkg/version.Version={{.Tag }}
     main: ./cmd/pulumi-resource-aws-miniflux/
 changelog:
   skip: true
