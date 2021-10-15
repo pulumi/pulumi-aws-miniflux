@@ -1,7 +1,7 @@
 {
-    "name": "miniflux",
+    "name": "aws-miniflux",
     "resources": {
-        "miniflux:index:MinifluxService": {
+        "aws-miniflux:index:MinifluxService": {
             "isComponent": true,
             "inputProperties": {
                 "dbName": {
@@ -48,11 +48,14 @@
             "packageReferences": {
                 "Pulumi": "3.*",
                 "Pulumi.Aws": "4.*"
+            },
+            "namespaces": {
+                "aws-miniflux": "AwsMiniflux"
             }
         },
         "go": {
             "generateResourceContainerTypes": true,
-            "importBasePath": "github.com/cnunciato/pulumi-miniflux/sdk/go/miniflux"
+            "importBasePath": "github.com/pulumi/pulumi-aws-miniflux/sdk/go/miniflux"
         },
         "nodejs": {
             "dependencies": {
@@ -61,7 +64,7 @@
             "devDependencies": {
                 "typescript": "^3.7.0"
             },
-            "packageName": "@cnunciato/pulumi-miniflux"
+            "packageName": "@pulumi/aws-miniflux"
         },
         "python": {
             "requires": {

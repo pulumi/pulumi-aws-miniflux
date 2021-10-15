@@ -15,21 +15,21 @@ const _module = {
     version: utilities.getVersion(),
     construct: (name: string, type: string, urn: string): pulumi.Resource => {
         switch (type) {
-            case "miniflux:index:MinifluxService":
+            case "aws-miniflux:index:MinifluxService":
                 return new MinifluxService(name, <any>undefined, { urn })
             default:
                 throw new Error(`unknown resource type ${type}`);
         }
     },
 };
-pulumi.runtime.registerResourceModule("miniflux", "index", _module)
+pulumi.runtime.registerResourceModule("aws-miniflux", "index", _module)
 
 import { Provider } from "./provider";
 
-pulumi.runtime.registerResourcePackage("miniflux", {
+pulumi.runtime.registerResourcePackage("aws-miniflux", {
     version: utilities.getVersion(),
     constructProvider: (name: string, type: string, urn: string): pulumi.ProviderResource => {
-        if (type !== "pulumi:providers:miniflux") {
+        if (type !== "pulumi:providers:aws-miniflux") {
             throw new Error(`unknown provider type ${type}`);
         }
         return new Provider(name, <any>undefined, { urn });

@@ -182,7 +182,7 @@ class MinifluxService(pulumi.ComponentResource):
             __props__.__dict__["db_username"] = db_username
             __props__.__dict__["endpoint"] = None
         super(MinifluxService, __self__).__init__(
-            'miniflux:index:MinifluxService',
+            'aws-miniflux:index:MinifluxService',
             resource_name,
             __props__,
             opts,

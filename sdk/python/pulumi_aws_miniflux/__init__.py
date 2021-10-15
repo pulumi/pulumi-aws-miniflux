@@ -11,11 +11,11 @@ _utilities.register(
     resource_modules="""
 [
  {
-  "pkg": "miniflux",
+  "pkg": "aws-miniflux",
   "mod": "index",
-  "fqn": "pulumi_miniflux",
+  "fqn": "pulumi_aws_miniflux",
   "classes": {
-   "miniflux:index:MinifluxService": "MinifluxService"
+   "aws-miniflux:index:MinifluxService": "MinifluxService"
   }
  }
 ]
@@ -23,9 +23,9 @@ _utilities.register(
     resource_packages="""
 [
  {
-  "pkg": "miniflux",
-  "token": "pulumi:providers:miniflux",
-  "fqn": "pulumi_miniflux",
+  "pkg": "aws-miniflux",
+  "token": "pulumi:providers:aws-miniflux",
+  "fqn": "pulumi_aws_miniflux",
   "class": "Provider"
  }
 ]

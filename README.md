@@ -10,9 +10,9 @@ I use this repository to build and publish a [Pulumi package](https://www.pulumi
 
 Components are published to the usual package managers:
 
-* npm for JavaScript or TypeScript: https://www.npmjs.com/package/@cnunciato/pulumi-miniflux
-* PyPI for Python: https://pypi.org/project/pulumi-miniflux/
-* NuGet for any .NET language: https://www.nuget.org/packages/Pulumi.Miniflux/
+* npm for JavaScript or TypeScript: https://www.npmjs.com/package/@pulumi/aws-miniflux
+* PyPI for Python: https://pypi.org/project/pulumi-aws-miniflux/
+* NuGet for any .NET language: https://www.nuget.org/packages/Pulumi.AwsMiniflux/
 * This GitHub repo (i.e., [from here](./sdk/go)) for Go
 
 ### Component API
@@ -73,14 +73,7 @@ See below for more detailed instructions. Complete programs are available at [`.
 
 ## Using published components
 
-All components require [Pulumi](https://www.pulumi.com/docs/get-started), of course, along with the `pulumi-resource-miniflux` plugin, which as of today, still needs to be installed separately. To do that:
-
-```
-pulumi plugin install resource miniflux 0.0.16 \
-    --server http://cnunciato-pulumi-components.s3-website-us-west-2.amazonaws.com
-```
-
-Then, assuming you've [configured Pulumi and AWS](https://www.pulumi.com/docs/intro/cloud-providers/aws/), you can follow the instructions below to use the component in your language of choice.
+All components require [Pulumi](https://www.pulumi.com/docs/get-started), of course. Then, assuming you've [configured Pulumi and AWS](https://www.pulumi.com/docs/intro/cloud-providers/aws/), you can follow the instructions below to use the component in your language of choice.
 
 ### TypeScript/JavaScript
 
@@ -88,7 +81,7 @@ On the command line:
 
 ```
 $ pulumi new typescript
-$ npm install --save @cnunciato/miniflux
+$ npm install --save @pulumi/aws-miniflux
 $ pulumi config set --secret adminPassword "some-secret-password"
 $ pulumi config set --secret dbPassword "some-other-secret-password"
 ```
@@ -97,7 +90,7 @@ In `index.ts`:
 
 ```typescript
 import * as pulumi from "@pulumi/pulumi";
-import * as miniflux from "@cnunciato/miniflux";
+import * as miniflux from "@pulumi/aws-miniflux";
 
 const config = new pulumi.Config();
 const adminPassword = config.requireSecret("adminPassword");
@@ -129,7 +122,7 @@ In `__main.py__`:
 ```python
 import pulumi
 from pulumi_aws import s3
-from pulumi_miniflux import miniflux_service
+from pulumi_aws_miniflux import miniflux_service
 
 config = pulumi.Config();
 admin_password = config.get_secret("adminPassword")
@@ -151,7 +144,7 @@ On the command line:
 
 ```
 $ pulumi new go
-$ go get github.com/cnunciato/pulumi-miniflux/sdk/go/miniflux
+$ go get github.com/pulumi/pulumi-aws-miniflux/sdk/go/miniflux
 $ pulumi config set --secret adminPassword "some-secret-password"
 $ pulumi config set --secret dbPassword "some-other-secret-password"
 ```
@@ -162,7 +155,7 @@ In `main.go`:
 package main
 
 import (
-	"github.com/cnunciato/pulumi-miniflux/sdk/go/miniflux"
+	"github.com/pulumi/pulumi-aws-miniflux/sdk/go/miniflux"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi/config"
 )
@@ -196,7 +189,7 @@ On the command line:
 
 ```
 $ pulumi new csharp
-$ dotnet add package Pulumi.Miniflux
+$ dotnet add package Pulumi.AwsMiniflux
 $ pulumi config set --secret adminPassword "some-secret-password"
 $ pulumi config set --secret dbPassword "some-other-secret-password"
 ```
@@ -206,7 +199,7 @@ In `MyStack.cs`:
 ```csharp
 using Pulumi;
 using Pulumi.Aws.S3;
-using Pulumi.Miniflux;
+using Pulumi.AwsMiniflux;
 
 class MyStack : Stack
 {
@@ -217,7 +210,7 @@ class MyStack : Stack
         var dbPassword = config.RequireSecret("dbPassword");
 
         // Create a new Miniflux service.
-        var service = new Pulumi.Miniflux.MinifluxService("service", new Pulumi.Miniflux.MinifluxServiceArgs{
+        var service = new Pulumi.AwsMiniflux.MinifluxService("service", new Pulumi.AwsMiniflux.MinifluxServiceArgs{
             AdminPassword = adminPassword,
             DbPassword = dbPassword,
         });
@@ -229,16 +222,6 @@ class MyStack : Stack
     [Output]
     public Output<string> Endpoint { get; set; }
 }
-```
-
-## Generating and publishing component packages
-
-Right now, these instructions are mainly for me, but you might find them useful to refer to as well, as you build your own multi-language components:
-
-```
-$ export VERSION=0.0.16   # Sets the target package version.
-$ make install generate   # Builds the provider and generates all four language SDKs.
-$ make publish            # Publishes to npm, nuget, and PyPI.
 ```
 
 ## More on how all this stuff works
