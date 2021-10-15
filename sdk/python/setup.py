@@ -8,19 +8,22 @@ from setuptools.command.install import install
 from subprocess import check_call
 
 
+VERSION = "0.0.0"
+PLUGIN_VERSION = "0.0.0"
+
 class InstallPluginCommand(install):
     def run(self):
         install.run(self)
         try:
-            check_call(['pulumi', 'plugin', 'install', 'resource', 'miniflux', '0.0.16', '--server', 'http://cnunciato-pulumi-components.s3-website-us-west-2.amazonaws.com'])
+            check_call(['pulumi', 'plugin', 'install', 'resource', 'aws-miniflux', PLUGIN_VERSION])
         except OSError as error:
             if error.errno == errno.ENOENT:
-                print("""
-                There was an error installing the miniflux resource provider plugin.
+                print(f"""
+                There was an error installing the aws-miniflux resource provider plugin.
                 It looks like `pulumi` is not installed on your system.
                 Please visit https://pulumi.com/ to install the Pulumi CLI.
                 You may try manually installing the plugin by running
-                `pulumi plugin install resource miniflux 0.0.16`
+                `pulumi plugin install resource aws-miniflux {PLUGIN_VERSION}`
                 """)
             else:
                 raise
@@ -31,11 +34,11 @@ def readme():
         with open('README.md', encoding='utf-8') as f:
             return f.read()
     except FileNotFoundError:
-            return "miniflux Pulumi Package - Development Version"
+        return "aws-miniflux Pulumi Package - Development Version"
 
 
-setup(name='pulumi_miniflux',
-      version='0.0.16',
+setup(name='pulumi_aws_miniflux',
+      version=VERSION,
       long_description=readme(),
       long_description_content_type='text/markdown',
       cmdclass={
@@ -43,7 +46,7 @@ setup(name='pulumi_miniflux',
       },
       packages=find_packages(),
       package_data={
-          'pulumi_miniflux': [
+          'pulumi_aws_miniflux': [
               'py.typed',
           ]
       },

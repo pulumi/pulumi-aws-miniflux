@@ -1,5 +1,5 @@
 {
-    "name": "@cnunciato/miniflux",
+    "name": "@pulumi/aws-miniflux",
     "version": "${VERSION}",
     "scripts": {
         "build": "tsc"

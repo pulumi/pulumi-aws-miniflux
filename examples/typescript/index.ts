@@ -1,5 +1,5 @@
 import * as pulumi from "@pulumi/pulumi";
-import * as miniflux from "@cnunciato/miniflux";
+import * as miniflux from "@pulumi/aws-miniflux";
 
 const config = new pulumi.Config();
 const adminPassword = config.requireSecret("adminPassword");

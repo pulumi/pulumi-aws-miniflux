@@ -39,7 +39,7 @@ func NewMinifluxService(ctx *pulumi.Context,
 	serviceName := "miniflux-service"
 
 	// Register the component resource.
-	err := ctx.RegisterComponentResource("miniflux:index:MinifluxService", name, component, opts...)
+	err := ctx.RegisterComponentResource("aws-miniflux:index:MinifluxService", name, component, opts...)
 	if err != nil {
 		return nil, err
 	}

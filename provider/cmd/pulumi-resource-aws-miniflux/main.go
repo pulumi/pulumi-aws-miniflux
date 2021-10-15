@@ -17,11 +17,11 @@
 package main
 
 import (
-	"github.com/cnunciato/pulumi-miniflux/pkg/provider"
-	"github.com/cnunciato/pulumi-miniflux/pkg/version"
+	"github.com/pulumi/pulumi-aws-miniflux/pkg/provider"
+	"github.com/pulumi/pulumi-aws-miniflux/pkg/version"
 )
 
-var providerName = "miniflux"
+var providerName = "aws-miniflux"
 
 func main() {
 	provider.Serve(providerName, version.Version, pulumiSchema)

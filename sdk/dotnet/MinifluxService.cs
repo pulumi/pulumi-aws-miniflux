@@ -7,9 +7,9 @@ using System.Collections.Immutable;
 using System.Threading.Tasks;
 using Pulumi.Serialization;
 
-namespace Pulumi.Miniflux
+namespace Pulumi.AwsMiniflux
 {
-    [MinifluxResourceType("miniflux:index:MinifluxService")]
+    [AwsMinifluxResourceType("aws-miniflux:index:MinifluxService")]
     public partial class MinifluxService : Pulumi.ComponentResource
     {
         /// <summary>
@@ -27,7 +27,7 @@ namespace Pulumi.Miniflux
         /// <param name="args">The arguments used to populate this resource's properties</param>
         /// <param name="options">A bag of options that control this resource's behavior</param>
         public MinifluxService(string name, MinifluxServiceArgs args, ComponentResourceOptions? options = null)
-            : base("miniflux:index:MinifluxService", name, args ?? new MinifluxServiceArgs(), MakeResourceOptions(options, ""), remote: true)
+            : base("aws-miniflux:index:MinifluxService", name, args ?? new MinifluxServiceArgs(), MakeResourceOptions(options, ""), remote: true)
         {
         }
 

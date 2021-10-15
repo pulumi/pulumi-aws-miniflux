@@ -6,7 +6,7 @@ using System.IO;
 using System.Reflection;
 using Pulumi;
 
-namespace Pulumi.Miniflux
+namespace Pulumi.AwsMiniflux
 {
     static class Utilities
     {
@@ -66,7 +66,7 @@ namespace Pulumi.Miniflux
         static Utilities()
         {
             var assembly = typeof(Utilities).GetTypeInfo().Assembly;
-            using var stream = assembly.GetManifestResourceStream("Pulumi.Miniflux.version.txt");
+            using var stream = assembly.GetManifestResourceStream("Pulumi.AwsMiniflux.version.txt");
             using var reader = new StreamReader(stream ?? throw new NotSupportedException("Missing embedded version.txt file"));
             version = reader.ReadToEnd().Trim();
             var parts = version.Split("\n");
@@ -78,9 +78,9 @@ namespace Pulumi.Miniflux
         }
     }
 
-    internal sealed class MinifluxResourceTypeAttribute : Pulumi.ResourceTypeAttribute
+    internal sealed class AwsMinifluxResourceTypeAttribute : Pulumi.ResourceTypeAttribute
     {
-        public MinifluxResourceTypeAttribute(string type) : base(type, Utilities.Version)
+        public AwsMinifluxResourceTypeAttribute(string type) : base(type, Utilities.Version)
         {
         }
     }

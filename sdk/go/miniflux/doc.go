@@ -1,3 +1,3 @@
-// Package miniflux exports types, functions, subpackages for provisioning miniflux resources.
+// Package aws-miniflux exports types, functions, subpackages for provisioning aws-miniflux resources.
 //
-package miniflux
+package aws

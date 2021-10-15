@@ -6,7 +6,7 @@ import * as utilities from "./utilities";
 
 export class MinifluxService extends pulumi.ComponentResource {
     /** @internal */
-    public static readonly __pulumiType = 'miniflux:index:MinifluxService';
+    public static readonly __pulumiType = 'aws-miniflux:index:MinifluxService';
 
     /**
      * Returns true if the given object is an instance of MinifluxService.  This is designed to work even
